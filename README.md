@@ -1,49 +1,46 @@
-local player = game.Players.LocalPlayer
-
--- Função para usar uma habilidade específica
-local function useSkill(skill)
-    game:GetService("ReplicatedStorage").Remotes.Combat:FireServer(skill)
-end
-
--- Função para atacar inimigos
-local function attackEnemy(enemy)
-    -- Ataca com habilidades da Blox Fruit
-    useSkill("Z") -- Primeira habilidade da fruta
-    wait(1)
-    useSkill("X") -- Segunda habilidade da fruta
-    wait(1)
-    useSkill("C") -- Terceira habilidade da fruta
-
-    -- Usa a espada
-    useSkill("SwordSlash")
-    wait(1)
-
-    -- Usa a arma de fogo
-    useSkill("GunShoot")
-    wait(1)
-
-    -- Usa combate corpo a corpo
-    useSkill("CombatPunch")
-    wait(1)
-end
-
--- Script principal de caça de bounty
 while true do
-    for _, target in pairs(game.Players:GetPlayers()) do
-        if target.Team ~= player.Team and target.Character and target.Character:FindFirstChild("Humanoid") and target.Character.Humanoid.Health > 0 then
-            -- Move-se para o jogador alvo
-            player.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
-            wait(0.5) -- Espera para se aproximar
-
-            -- Ataca o alvo com todas as habilidades
-            attackEnemy(target.Character.Humanoid)
-
-            -- Continua atacando até derrotar o alvo
-            while target.Character.Humanoid.Health > 0 do
-                attackEnemy(target.Character.Humanoid)
-                wait(0.5)
-            end
+    local player = game.Players.LocalPlayer
+    local level = player.Data.Level.Value
+    if level < 2550 then
+        -- Aqui, o script procuraria pela missão mais próxima para o nível atual
+        local quest = getBestQuestForLevel(level)
+        -- Aceita a missão automaticamente
+        acceptQuest(quest)
+        
+        -- Encontra os inimigos necessários para completar a missão
+        local enemies = findEnemies(quest)
+        
+        -- Ataca os inimigos até completar a missão
+        for _, enemy in pairs(enemies) do
+            autoAttack(enemy)
         end
+        
+        -- Completa a missão e recebe a recompensa
+        completeQuest(quest)
+    else
+        print("Nível máximo atingido!")
+        break
     end
-    wait(3) -- Espera 3 segundos antes de procurar outro alvo
+    wait(1)  -- Adiciona uma pausa para evitar sobrecarregar o servidor
+end
+
+-- Funções auxiliares que precisariam ser criadas para automatizar o processo
+function getBestQuestForLevel(level)
+    -- Lógica para encontrar a melhor missão com base no nível
+end
+
+function acceptQuest(quest)
+    -- Lógica para aceitar a missão
+end
+
+function findEnemies(quest)
+    -- Lógica para encontrar os inimigos necessários
+end
+
+function autoAttack(enemy)
+    -- Lógica para atacar os inimigos automaticamente
+end
+
+function completeQuest(quest)
+    -- Lógica para completar a missão e pegar a recompensa
 end
