@@ -1,34 +1,40 @@
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
+
+local BazukaHub = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
-local Button = Instance.new("TextButton")
+local ActivateButton = Instance.new("TextButton")
 
-ScreenGui.Name = "BazukaHub"
-ScreenGui.Parent = game.CoreGui
+BazukaHub.Name = "BazukaHub"
+BazukaHub.Parent = game.CoreGui
 
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-Frame.Size = UDim2.new(0, 400, 0, 300)
-Frame.Position = UDim2.new(0.5, -200, 0.5, -150)
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = BazukaHub
+MainFrame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+MainFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
+MainFrame.Size = UDim2.new(0, 300, 0, 200)
+MainFrame.BorderSizePixel = 2
 
-Title.Parent = Frame
+Title.Name = "Title"
+Title.Parent = MainFrame
 Title.Text = "Bazuka Hub"
-Title.Size = UDim2.new(0, 400, 0, 50)
-Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.Font = Enum.Font.SourceSans
-Title.TextSize = 30
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.Size = UDim2.new(0, 300, 0, 50)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 24
 
-Button.Parent = Frame
-Button.Text = "Pegar Tudo"
-Button.Size = UDim2.new(0, 200, 0, 50)
-Button.Position = UDim2.new(0.5, -100, 0.5, 0)
-Button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-Button.Font = Enum.Font.SourceSans
-Button.TextSize = 20
+ActivateButton.Name = "ActivateButton"
+ActivateButton.Parent = MainFrame
+ActivateButton.BackgroundColor3 = Color3.new(0.3, 0.7, 0.3)
+ActivateButton.Position = UDim2.new(0.5, -75, 0.6, 0)
+ActivateButton.Size = UDim2.new(0, 150, 0, 50)
+ActivateButton.Text = "Ativar Script"
+ActivateButton.Font = Enum.Font.SourceSansBold
+ActivateButton.TextSize = 20
 
-Button.MouseButton1Click:Connect(function()
-    print("Tentando pegar tudo no jogo...")
-    -- Aqui você colocaria o código para interagir com o jogo, o que no caso seria um hack ilegal.
+ActivateButton.MouseButton1Click:Connect(function()
+    print("Script do Bazuka Hub ativado!")
+    -- Exemplo de função fictícia (adicione suas funções aqui)
+    local player = game.Players.LocalPlayer
+    player.Character.Humanoid.WalkSpeed = 100 -- Mudar a velocidade de movimento, por exemplo
 end)
