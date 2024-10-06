@@ -1,4 +1,3 @@
-
 local BazukaHub = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
